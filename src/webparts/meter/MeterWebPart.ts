@@ -12,7 +12,9 @@ import Meter from './components/Meter';
 import { IMeterProps } from './components/IMeterProps';
 
 export interface IMeterWebPartProps {
+  title: string;
   description: string;
+  percentage: number;
 }
 
 export default class MeterWebPart extends BaseClientSideWebPart<IMeterWebPartProps> {
@@ -21,7 +23,9 @@ export default class MeterWebPart extends BaseClientSideWebPart<IMeterWebPartPro
     const element: React.ReactElement<IMeterProps > = React.createElement(
       Meter,
       {
-        description: this.properties.description
+        title: this.properties.title,
+        description: this.properties.description,
+        percentage: this.properties.percentage,
       }
     );
 
@@ -47,9 +51,15 @@ export default class MeterWebPart extends BaseClientSideWebPart<IMeterWebPartPro
             {
               groupName: strings.BasicGroupName,
               groupFields: [
+                PropertyPaneTextField('title', {
+                  label: 'Title'
+                }),
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
-                })
+                }),
+                PropertyPaneTextField('percentage', {
+                  label: 'Percentage'
+                }),
               ]
             }
           ]
