@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "meter-react-client-side-solution",
+    "id": "93abc9b7-bfa8-4f58-b977-6ac08cc2ec69",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/meter-react.sppkg"
+  }
+}
