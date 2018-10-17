@@ -22,7 +22,9 @@
     "properties": {
       "title": "",
       "description": "Meter",
-      "percentage": 0
+      "percentage": 0,
+      "showPercentageValue": true,
+      "headerAlignment": "center"
     }
   }]
 }

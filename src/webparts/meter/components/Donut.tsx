@@ -9,7 +9,7 @@ export default class Donut extends React.Component<IDonutProps> {
           <circle className="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
           <circle className="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#eee" strokeWidth="4"></circle>
           <circle className="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#47c3f0" strokeWidth="4" strokeDasharray={`${this.props.percentage} ${100 - this.props.percentage}`} strokeDashoffset="25"></circle>
-          <text className="donut-number" x="50%" y="50%" textAnchor="middle">{this.props.percentage}%</text>
+          {this.props.showPercentageValue && <text className="donut-number" x="50%" y="50%" textAnchor="middle">{this.props.percentage}%</text>}
         </svg>
       </div>
     );

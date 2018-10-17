@@ -4,7 +4,12 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneHorizontalRule,
+  PropertyPaneLabel,
+  PropertyPaneSlider,
+  PropertyPaneCheckbox,
+  PropertyPaneDropdown,
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'MeterWebPartStrings';
@@ -15,6 +20,8 @@ export interface IMeterWebPartProps {
   title: string;
   description: string;
   percentage: number;
+  showPercentageValue: boolean;
+  headerAlignment: string;
 }
 
 export default class MeterWebPart extends BaseClientSideWebPart<IMeterWebPartProps> {
@@ -26,6 +33,8 @@ export default class MeterWebPart extends BaseClientSideWebPart<IMeterWebPartPro
         title: this.properties.title,
         description: this.properties.description,
         percentage: this.properties.percentage,
+        showPercentageValue: this.properties.showPercentageValue,
+        headerAlignment: this.properties.headerAlignment,
       }
     );
 
@@ -45,21 +54,43 @@ export default class MeterWebPart extends BaseClientSideWebPart<IMeterWebPartPro
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: 'Meter Settings'
           },
           groups: [
             {
-              groupName: strings.BasicGroupName,
+              groupName: 'Header Settings',
               groupFields: [
                 PropertyPaneTextField('title', {
                   label: 'Title'
                 }),
+                PropertyPaneHorizontalRule(),
                 PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                  label: 'Description'
                 }),
-                PropertyPaneTextField('percentage', {
-                  label: 'Percentage'
+                PropertyPaneDropdown('headerAlignment', {
+                  label: 'Header Alignment',
+                  options: [
+                    { key: 'left', text: 'Left' },
+                    { key: 'center', text: 'Center' },
+                    { key: 'right', text: 'Right' },
+                  ]
+                })
+              ]
+            },
+            {
+              groupName: 'Chart Settings',
+              groupFields: [
+                PropertyPaneSlider('percentage', {
+                  min: 0,
+                  max: 100,
+                  step: 1,
                 }),
+                PropertyPaneLabel(null, {
+                  text: 'Enter a value between 0 and 100'
+                }),
+                PropertyPaneCheckbox('showPercentageValue', {
+                  text: 'Show Percentage'
+                })
               ]
             }
           ]

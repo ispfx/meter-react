@@ -8,9 +8,11 @@ export default class Meter extends React.Component<IMeterProps, {}> {
   public render(): React.ReactElement<IMeterProps> {
     return (
       <div className={ styles.meter }>
-        <h1>{this.props.title}</h1>
-        <p>{this.props.description}</p>
-        <Donut percentage={this.props.percentage} />
+        <header style={{ textAlign: this.props.headerAlignment }}>
+          <h1>{this.props.title}</h1>
+          <p>{this.props.description}</p>
+        </header>
+        <Donut percentage={this.props.percentage} showPercentageValue={this.props.showPercentageValue} />
       </div>
     );
   }
