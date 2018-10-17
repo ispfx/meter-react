@@ -11,6 +11,10 @@ import {
   PropertyPaneCheckbox,
   PropertyPaneDropdown,
 } from '@microsoft/sp-webpart-base';
+import {
+  PropertyFieldColorPicker,
+  PropertyFieldColorPickerStyle,
+} from '@pnp/spfx-property-controls/lib/PropertyFieldColorPicker';
 
 import * as strings from 'MeterWebPartStrings';
 import Meter from './components/Meter';
@@ -22,6 +26,7 @@ export interface IMeterWebPartProps {
   percentage: number;
   showPercentageValue: boolean;
   headerAlignment: string;
+  fillColor: string;
 }
 
 export default class MeterWebPart extends BaseClientSideWebPart<IMeterWebPartProps> {
@@ -35,6 +40,7 @@ export default class MeterWebPart extends BaseClientSideWebPart<IMeterWebPartPro
         percentage: this.properties.percentage,
         showPercentageValue: this.properties.showPercentageValue,
         headerAlignment: this.properties.headerAlignment,
+        fillColor: this.properties.fillColor,
       }
     );
 
@@ -90,6 +96,17 @@ export default class MeterWebPart extends BaseClientSideWebPart<IMeterWebPartPro
                 }),
                 PropertyPaneCheckbox('showPercentageValue', {
                   text: 'Show Percentage'
+                }),
+                PropertyFieldColorPicker('fillColor', {
+                  label: 'Color',
+                  selectedColor: this.properties.fillColor,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  disabled: false,
+                  alphaSliderHidden: true,
+                  style: PropertyFieldColorPickerStyle.Inline,
+                  iconName: 'Precipitation',
+                  key: 'colorFieldId'
                 })
               ]
             }

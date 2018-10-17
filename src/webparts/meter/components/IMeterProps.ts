@@ -4,4 +4,5 @@ export interface IMeterProps {
   percentage: number;
   showPercentageValue: boolean;
   headerAlignment: string;
+  fillColor: string;
 }

@@ -13,6 +13,7 @@
   },
   "externals": {},
   "localizedResources": {
-    "MeterWebPartStrings": "lib/webparts/meter/loc/{locale}.js"
+    "MeterWebPartStrings": "lib/webparts/meter/loc/{locale}.js",
+    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js"
   }
 }
